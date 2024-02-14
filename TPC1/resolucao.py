@@ -1,9 +1,12 @@
 import sys
 
-# read the given dataset (csv file)
-def read_dataset(filename):
-    with open (filename, 'r') as csv_file:
-        data = csv_file.readlines()[1:]
+# read the dataset from the stdin
+def read_dataset():
+    data = []
+    next(sys.stdin)
+    #ignore the first line of the dataset (header)
+    for line in sys.stdin:
+        data.append(line)
     return data
 
 # create an alphabetically ordered list of the different sports modalities
@@ -59,8 +62,7 @@ def athletes_age(data):
 
 # main that receives the filename as an argument
 def main():
-    filename = sys.argv[1]
-    data = read_dataset(filename)
+    data = read_dataset()
     print(sports_list(data))
     print(athletes_status(data))
     print(athletes_age(data))
