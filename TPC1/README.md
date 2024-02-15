@@ -6,6 +6,18 @@
 
 **id:** A100596
 
+## Enunciado
+
+O trabalho proposto requer o desenvolvimento de um programa em **Python** que seja capaz de processar um conjunto de dados apresentado em formato **CSV**, sem a utilização do módulo CSV, a fim de realizar uma série de análises específicas. As análises solicitadas incluem:
+
+1. Geração de uma lista ordenada alfabeticamente das modalidades desportivas presentes no conjunto de dados.
+
+2. Cálculo das percentagens de atletas aptos e inaptos para a prática desportiva, com base nas informações disponíveis no dataset.
+
+3. Análise da distribuição dos atletas por escalão etário. Cada escalão corresponde a um intervalo de 5 anos, por exemplo, [30-34], [35-39], e assim por diante.
+
+Para atingir esses objetivos, espera-se que o programa seja capaz de processar os dados do arquivo CSV diretamente, sem a utilização de bibliotecas ou módulos específicos para essa finalidade. O programa deve ser capaz de realizar as análises mencionadas de forma precisa e eficiente, fornecendo resultados claros e bem estruturados.
+
 ## Resumo
 
 1. Começo por ler o ficheiro **.csv** a partir do **stdin**;
