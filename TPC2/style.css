@@ -42,40 +42,26 @@ h1 {
     background-color: #0056b3;
 }
 
-/* Custom styles for the index page */
-
-/* Background and spacing */
-body {
-    background-color: #f5f5f5;
-    margin: 20px;
-    padding: 0;
-}
-
-/* Title */
-h1 {
-    color: #333;
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-/* Secondary Title */
-h2 {
-    color: #666;
-}
-
 /* List styles */
-ul {
-    list-style-type: none;
+ul, ol {
+    list-style: none;
     padding: 0;
 }
 
 li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline;
+    margin-right: 10px;
+}
+
+ol li {
+    counter-increment: my-counter;
+}
+
+ol li:before {
+    content: counter(my-counter) ". ";
+    font-weight: bold;
+    color: #6a0303;
+    margin-right: 5px;
 }
 
 /* Image styles */
@@ -88,8 +74,9 @@ img {
 
 /* Link styles */
 a {
-    color: #007bff;
-    text-decoration: none;
+    color: #6a0303;
+    text-decoration: underline;
+    text-decoration-color: #6a0303;
 }
 
 a:hover {
@@ -97,7 +84,6 @@ a:hover {
     color: #6a0303;
 }
 
-/* Footer */
 h6 {
     text-align: center;
     margin-top: 20px;

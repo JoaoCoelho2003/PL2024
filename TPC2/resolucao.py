@@ -1,108 +1,67 @@
 import sys
-
-# transforms markdown to html
-
-# # -> <h1>, ## -> <h2>, ### -> <h3>, ** -> <b>, * -> <i>, ordered list -> <li>, unordered list -> <ul>, link -> <a>, image -> <img>
+import re
 
 def markdown_to_html(markdown, template_page):
-    # read the file through the stdin
-    list = False
+
+    # regular expressions for each markdown element
+    header_regex = re.compile(r'^(#{1,6})\s(.*)$')
+    bold_regex = re.compile(r'\*\*(.*?)\*\*')
+    italic_regex = re.compile(r'\*(.*?)\*')
+    ul_regex = re.compile(r'^[\*\-\+] (.*)$')
+    ol_regex = re.compile(r'^\d+\.\s(.*)$')
+    img_regex = re.compile(r'!\[(.*?)\]\((.*?)\)')
+    link_regex = re.compile(r'\[(.*?)\]\((.*?)\)')
 
     for line in markdown:
-        
-        # Handle titles
-        if line.startswith('#'):
-            level = line.count('#')
-            if level == 1:
-                template_page += f"<h{level} class=\"bg-slate-200 py-4 text-3xl font-semibold text-white\" style=\"background-color: #6a0303;\">{line[level+1:]}</h{level}>"
-            else:
-                template_page += f"<h{level} class=\"pt-16 pb-6 text-3xl font-semibold\" style=\"color: #6a0303; text-align: center;\">{line[level+1:]}</h{level}>"
 
+        # Handle headers
+        match = header_regex.match(line)
+        if match:
+            level = len(match.group(1))
+            if level == 1:
+                template_page += f"<h{level} class=\"bg-slate-200 py-4 text-3xl font-semibold text-white\" style=\"background-color: #6a0303;\">{match.group(2)}</h{level}>\n"
+                continue
+            else:
+                template_page += f"<h{level} class=\"pt-16 pb-6 text-3xl font-semibold\" style=\"color: #6a0303; text-align: center;\">{match.group(2)}</h{level}>\n"
+                continue
 
         # Handle bold
-        elif '**' in line:
-            parts = line.split('**')
-            for i, part in enumerate(parts):
-                if i % 2 == 0:
-                    template_page += part
-                else:
-                    template_page += f"<b>{part}</b>"
+        line = bold_regex.sub(r'<b>\1</b>', line)
 
         # Handle italic
-        elif '*' in line:
-            parts = line.split('*')
-            for i, part in enumerate(parts):
-                if i % 2 == 0:
-                    template_page += part
-                else:
-                    template_page += f"<i>{part}</i>"
+        line = italic_regex.sub(r'<i>\1</i>', line)
 
         # Handle unordered lists
-        elif line.startswith('-') or line.startswith('+') or line.startswith('*'):
+        match = ul_regex.match(line)
+        if match:
+            template_page += f"<ul><li>{match.group(1)}</li>\n"
+            continue
 
-            if not list:
-                template_page += "<ul>"
-                list = True
-
-            template_page += f"<li>{line[1:].strip()}</li>"
-        
         # Handle ordered lists
-        elif line[0].isdigit():
-
-            if not list:
-                template_page += "<ol>"
-                list = True
-
-            template_page += f"<li>{line[2:].strip()}</li>"
+        match = ol_regex.match(line)
+        if match:
+            template_page += f"<ol><li>{match.group(1)}</li>\n"
+            continue
 
         # Handle images
-        elif '!' in line and '[' in line and ']' in line and '(' in line and ')' in line:
-            parts = line.split('[')
-            for i, part in enumerate(parts):
-                # do nothing with the first part
-                if i % 2 == 0:
-                    template_page += ""
-                else:
-                    text, link = part.split('](')
-                    index = link.find(')')
-                    link = link[:index]
-                    
-                    template_page += f"<img src='{link}' alt='{text}'>"
+        line = img_regex.sub(r'<img src="\2" alt="\1">', line)
 
         # Handle links
-        elif '[' in line and ']' in line and '(' in line and ')' in line:
-            parts = line.split('[')
-            for i, part in enumerate(parts):
-                if i % 2 == 0:
-                    template_page += part
-                else:
-                    text, link = part.split('](')
-                    index = link.find(')')
-                    link = link[:index]
+        line = link_regex.sub(r'<a href="\2" alt="\1">\1</a>', line)
 
-                    if index + 1 < len(link):
-                        alt = link[index+1:]
-                        link = link[:index]
-                        template_page += f"<a href='{link}' alt='{alt}'>{text}</a>"
-                    else:
-                        template_page += f"<a href='{link}'>{text}</a>"
-                                      
 
-        else:
-            template_page += line
+        template_page += line
 
-        if list:
-            template_page += "</ol>"
-            list = False
-    
-    # create the html file
-            
+    # Close any open lists
+    template_page += "</ul></ol>\n"
+
+    # Write to HTML file
     with open('Markdown.html', 'w') as file:
         file.write(template_page)
-        file.write("</body></html>")
-
 
 def main():
+
+    # Template for the HTML page
     template_page = """
     <!DOCTYPE html>
     <html lang="pt-pt">
@@ -114,10 +73,12 @@ def main():
     </head>
     <body>
     """
+    
+    # Read the markdown from stdin
     markdown_to_html(sys.stdin.readlines(), template_page)
 
+    # Close the HTML page
+    template_page += "</body>\n</html>"
 
 if __name__ == "__main__":
     main()
-
-        
