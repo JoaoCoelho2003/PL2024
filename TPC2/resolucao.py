@@ -12,6 +12,10 @@ def markdown_to_html(markdown, template_page):
     img_regex = re.compile(r'!\[(.*?)\]\((.*?)\)')
     link_regex = re.compile(r'\[(.*?)\]\((.*?)\)')
 
+    list_open = False
+    list_passed = False
+    type_list = ""
+
     for line in markdown:
 
         # Handle headers
@@ -27,21 +31,37 @@ def markdown_to_html(markdown, template_page):
 
         # Handle bold
         line = bold_regex.sub(r'<b>\1</b>', line)
-
+        
         # Handle italic
         line = italic_regex.sub(r'<i>\1</i>', line)
 
         # Handle unordered lists
         match = ul_regex.match(line)
         if match:
-            template_page += f"<ul><li>{match.group(1)}</li>\n"
+            if not list_open:
+                template_page += "<ul class=\"list-disc pl-4\">\n"
+                list_open = True
+                list_passed = True
+                type_list = "ul"
+
+            template_page += f"<li>{match.group(1)}</li>\n"
             continue
+        else:
+            list_passed = False
 
         # Handle ordered lists
         match = ol_regex.match(line)
         if match:
-            template_page += f"<ol><li>{match.group(1)}</li>\n"
+            if not list_open:
+                template_page += "<ol class=\"list-decimal pl-4\">\n"
+                list_open = True
+                type_list = "ol"
+                list_passed = True
+
+            template_page += f"<li>{match.group(1)}</li>\n"
             continue
+        else:
+            list_passed = False
 
         # Handle images
         line = img_regex.sub(r'<img src="\2" alt="\1">', line)
@@ -49,11 +69,12 @@ def markdown_to_html(markdown, template_page):
         # Handle links
         line = link_regex.sub(r'<a href="\2" alt="\1">\1</a>', line)
 
+        if not list_passed and list_open:
+            template_page += f"</{type_list}>\n"
+            list_open = False
+
 
         template_page += line
-
-    # Close any open lists
-    template_page += "</ul></ol>\n"
 
     # Write to HTML file
     with open('Markdown.html', 'w') as file:
