@@ -17,6 +17,8 @@ O script utiliza expressões regulares para reconhecer e substituir os diversos 
 3. Criação de listas ordenadas e não ordenadas;
 4. Inclusão de links e imagens.
 
+## Instruções de Uso
+
 Para utilizar o conversor, basta executar o comando abaixo, substituindo *example.md* pelo nome do ficheiro Markdown que pretende converter:
 
 **cat example.md | python3 resolucao.py**
