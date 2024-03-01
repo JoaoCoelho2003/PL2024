@@ -17,11 +17,11 @@ Neste trabalho foi desenvolvido um *script python* que é responsável por defin
 
 ## Resolução
 
-1. Tenho duas variáveis booleanas responsáveis por determinar se *on* e *off* estão ativos;
+1. Tenho uma variável booleana responsável por determinar se *on* está ativo ou não;
 1. São utilizadas expressões regulares e funções do *módulo re* para encontrar ocurrências das strings alvo;
-2. Se uma das strings (on | off) fôr encontrada então as variáveis booleanas são alteradas para refletir tal facto;
-3. Dependendo do valor dessas mesmas variáveis, o valor dos inteiros encontrados, também possível graças ao uso de expressões regulares, será incrementado ao counter ou não;
-4. Por fim, como foi referido anteriormente, caso a string "=" seja encontrada, o valor do counter é retornado e o programa termina.
+2. Se uma das strings (on | off) fôr encontrada então a variável referida anteriormente é atualizada;
+3. Dependendo do valor da mesma, o valor dos inteiros encontrados, também possível graças ao uso de expressões regulares, será incrementado ao counter ou não;
+4. Por fim, como foi referido anteriormente, caso a string "=" seja encontrada, o valor do counter é impresso.
 
 ## Instruções de uso
 
