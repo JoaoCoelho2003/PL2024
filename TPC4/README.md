@@ -16,12 +16,10 @@ Neste trabalho foi implementado, em Python, um analisador léxico para instruç�
     - `SELECT`: Correspondente à palavra-chave "select".
     - `FROM`: Correspondente à palavra-chave "from".
     - `WHERE`: Correspondente à palavra-chave "where".
-    - `ID`: Correspondente a identificadores (nomes de tabelas, nomes de colunas, etc.), que devem começar com uma letra ou sublinhado, seguidos de letras, dígitos, etc.
+    - `FIELD`: Correspondente nomes de tabelas, nomes de colunas, etc.
     - `COMMA`: Correspondente a uma vírgula.
-    - `GREATER`: Correspondente ao operador maior ou igual a (">=").
+    - `OPERATOR`: Correspondente ao operador.
     - `NUM`: Correspondente a números, incluindo números inteiros e decimais.
-    - `SKIP`: Ignora caracteres de espaço em branco (espaços e tabulações).
-    - `ERRO`: Correspondente a qualquer outro caractere.
 
 2. **Correspondência de Expressões Regulares**: Um padrão de expressão regular é construído pela junção das especificações de token usando o operador `|` (OR). De seguida, a função `re.finditer()` é utilizada para encontrar todas as correspondências das especificações de token na string de entrada.
 
