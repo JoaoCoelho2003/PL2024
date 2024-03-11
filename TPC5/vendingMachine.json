@@ -1,0 +1,54 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Water",
+            "price": "50c"
+        },
+        {
+            "id": 2,
+            "name": "Soda",
+            "price": "1e"
+        },
+        {
+            "id": 3,
+            "name": "Snack",
+            "price": "1e20c"
+        },
+        {
+            "id": 4,
+            "name": "Chocolate Bar",
+            "price": "80c"
+        },
+        {
+            "id": 5,
+            "name": "Coffee",
+            "price": "55c"
+        },
+        {
+            "id": 6,
+            "name": "Tea",
+            "price": "1e20c"
+        },
+        {
+            "id": 7,
+            "name": "Juice",
+            "price": "1e20c"
+        },
+        {
+            "id": 8,
+            "name": "Sandwich",
+            "price": "2e10c"
+        },
+        {
+            "id": 9,
+            "name": "Chips",
+            "price": "1e20c"
+        },
+        {
+            "id": 10,
+            "name": "Candy",
+            "price": "70c"
+        }
+    ]
+}
