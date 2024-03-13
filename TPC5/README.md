@@ -8,7 +8,7 @@
 
 ## Resumo
 
-Este programa, desenvolvido em Python, simula o comportamento de uma máquina de vendas. Ele permite que os utilizadores interajam com a máquina inserindo comandos para listar produtos, adicionar moedas, selecionar produtos para compra e sair do mesmo.
+Este programa, desenvolvido em Python, simula o comportamento de uma máquina de vendas. Ele permite que os utilizadores interajam com a máquina inserindo comandos para listar produtos, adicionar moedas, adicionar produtos/stock, selecionar produtos para compra e sair do mesmo.
 
 ## Resolução
 
@@ -31,9 +31,10 @@ Tal como foi referido anteriormente, o programa foi desenvolvido em Python, apro
 - **Formato de Dados:** Os dados dos produtos são fornecidos a partir de um ficheiro JSON, seguindo uma estrutura específica que inclui o ID do produto, o nome e o preço.
 - **Carregamento de Dados:** O programa carrega os dados do produto a partir do ficheiro JSON e organiza-os numa estrutura de dados adequada para facilitar o acesso e manipulação durante a simulação da máquina de vendas.
 
-### Manipulação de Saldo e Troco
+### Manipulação de Saldo, Troco e Stock
 
-- **Controle de Saldo:** O programa mantém o controle do saldo do utilizador, atualizando-o conforme moedas são adicionadas e produtos são comprados.
+- **Controlo de Saldo:** O programa mantém o controlo do saldo do utilizador, atualizando-o conforme moedas são adicionadas e produtos são comprados.
+- **Controlo de Stock:** Existe um controlo do stock dos produtos, que é atualizado sempre que alguma compra é realizada, ou há algum tipo de reabastecimento dos produtos da máquina.
 - **Cálculo de Troco:** Ao sair da simulação, o programa calcula o troco a ser devolvido ao utilizador, utilizando algoritmos para determinar as combinações mais eficientes de moedas para minimizar o número de moedas devolvidas.
 
 ## Instruções de Uso
@@ -50,6 +51,7 @@ python3 script.py vendingMachine.json
 - **LISTAR:** Exibir todos os produtos na máquina de vendas.
 - **MOEDA:** Adicionar moedas à máquina.
 - **SELECIONAR:** Selecionar um produto para compra.
+- **ADICIONAR:** Adicionar um novo produto à máquina(ou stock).
 - **SAIR:** Sair da simulação e receber troco.
 
 ## Exemplo de Uso
