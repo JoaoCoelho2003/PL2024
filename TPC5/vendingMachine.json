@@ -3,52 +3,62 @@
         {
             "id": 1,
             "name": "Water",
-            "price": "50c"
+            "price": "50c",
+            "stock": 5
         },
         {
             "id": 2,
             "name": "Soda",
-            "price": "1e"
+            "price": "1e",
+            "stock": 2
         },
         {
             "id": 3,
             "name": "Snack",
-            "price": "1e20c"
+            "price": "1e20c",
+            "stock": 1
         },
         {
             "id": 4,
             "name": "Chocolate Bar",
-            "price": "80c"
+            "price": "80c",
+            "stock": 3
         },
         {
             "id": 5,
             "name": "Coffee",
-            "price": "55c"
+            "price": "55c",
+            "stock": 4
         },
         {
             "id": 6,
             "name": "Tea",
-            "price": "1e20c"
+            "price": "1e20c",
+            "stock": 2
         },
         {
             "id": 7,
             "name": "Juice",
-            "price": "1e20c"
+            "price": "1e20c",
+            "stock": 1
         },
         {
             "id": 8,
             "name": "Sandwich",
-            "price": "2e10c"
+            "price": "2e10c",
+            "stock": 7
         },
         {
             "id": 9,
             "name": "Chips",
-            "price": "1e20c"
+            "price": "1e20c",
+            "stock": 3
         },
         {
             "id": 10,
             "name": "Candy",
-            "price": "70c"
+            "price": "70c",
+            "stock": 5
         }
     ]
 }

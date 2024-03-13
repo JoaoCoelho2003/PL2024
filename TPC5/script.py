@@ -14,6 +14,7 @@ tokens = (
     'LISTAR',
     'MOEDA',
     'SELECIONAR',
+    'ADICIONAR',
     'SAIR'
 )
 
@@ -27,6 +28,11 @@ def t_MOEDA(t):
 
 def t_SELECIONAR(t):
     r'(?i)SELECIONAR[ ]\d+'
+    return t
+
+def t_ADICIONAR(t):
+    r'(?i)ADICIONAR[ ]\w+[ ]\d+[ ]?(\d+e\d+c|\d+c|\d+e)?'
+
     return t
 
 def t_SAIR(t):
@@ -47,9 +53,9 @@ def vending_machine(data):
         lexer.input(line)
         for tok in lexer:
             if(tok.type == "LISTAR"):
-                print("ID | NAME | PRICE")
+                print('     Number          |            Name                               |       Stock          |    Price    ')
                 for id, product in data.items():
-                    print(f"{id} | {product['name']} | {product['price']}")
+                    print(f"        {id: <5}        |        {product['name']: <30}         |        {product['stock']: <5}         |        {product['price']: <5}")
 
             elif(tok.type == "MOEDA"):
                 coins = tok.value.split()[1].split(",")
@@ -64,6 +70,10 @@ def vending_machine(data):
 
             elif tok.type == "SELECIONAR":
                 id = int(tok.value.split()[1])
+
+                if data[id]['stock'] == 0:
+                    print("Product not available. Out of stock")
+                    continue
 
                 if id not in data:
                     print("Product not available. Invalid Id")
@@ -80,12 +90,36 @@ def vending_machine(data):
 
                 if saldo >= product_price:
                     saldo -= product_price
-                    print(f"Change: {saldo}c")
+                    # needs to be in the 2e10c format
+                    euros = saldo // 100
+                    cents = saldo % 100
+                    print(f"Change: {euros}e{cents:02d}c")
+                    data[id]['stock'] -= 1
                 else:
                     print("You do not have enough money")
 
+            elif tok.type == "ADICIONAR":
+                # read name and the stock, if the product already exists in the machina then just add the stock, else add the product to the machine
+                name = tok.value.split()[1]
+                stock = int(tok.value.split()[2])
+
+                #check if the product already exists
+                exists = False
+                for id, product in data.items():
+                    if product['name'] == name:
+                        product['stock'] += stock
+                        exists = True
+                        break
+                if not exists:
+                    id = len(data) + 1
+                    data[id] = {'name': name, 'stock': stock, 'price': tok.value.split()[3]}
+                print(f"Product {name} added to the machine")
+
             elif tok.type == "SAIR":
-                print(f"Change: {saldo}c")
+                # needs to be in the 2e10c format
+                euros = saldo // 100
+                cents = saldo % 100
+                print(f"{euros}e{cents:02d}c")
                 change = []
                 for coin in [200, 100, 50, 20, 10, 5, 2, 1]:
                     while saldo >= coin:

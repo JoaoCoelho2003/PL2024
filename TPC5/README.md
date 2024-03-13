@@ -55,33 +55,56 @@ python3 script.py vendingMachine.json
 ## Exemplo de Uso
 
 ```
-$ MOEDA 1e,20c,50c
-$ 1e70c
-$ SELECIONAR 8
-$ You do not have enough money
-$ SELECIONAR 2
-$ Change: 70c
-$ MOEDA 20c
-$ 0e90c
 $ listar
-$ ID | NAME | PRICE
-$ 1 | Water | 50c
-$ 2 | Soda | 1e
-$ 3 | Snack | 1e20c
-$ 4 | Chocolate Bar | 80c
-$ 5 | Coffee | 55c
-$ 6 | Tea | 1e20c
-$ 7 | Juice | 1e20c
-$ 8 | Sandwich | 2e10c
-$ 9 | Chips | 1e20c
-$ 10 | Candy | 70c
-$ SELECIONAR 10   
-$ Change: 20c
-$ moeda 1e,1c,5c
-$ 1e26c
-$ SAIR
-$ Change: 126c
-$ 1e 20c 5c 1c
+$      Number          |            Name                               |       Stock          |    Price    
+$         1            |        Water                                  |        5             |        50c  
+$         2            |        Soda                                   |        2             |        1e   
+$         3            |        Snack                                  |        1             |        1e20c
+$         4            |        Chocolate Bar                          |        3             |        80c  
+$         5            |        Coffee                                 |        4             |        55c  
+$         6            |        Tea                                    |        2             |        1e20c
+$         7            |        Juice                                  |        1             |        1e20c
+$         8            |        Sandwich                               |        7             |        2e10c
+$         9            |        Chips                                  |        3             |        1e20c
+$         10           |        Candy                                  |        5             |        70c  
+$ moeda 2e,2e,2e,2e,2e
+$ 10e00c
+$ selecionar 2
+$ Change: 9e00c
+$ selecionar 1
+$ Change: 8e50c
+$ selecionar 7
+$ Change: 7e30c
+$ selecionar 7
+$ Product not available. Out of stock
+$ selecionar 8
+$ Change: 5e20c
+$ selecionar 8
+$ Change: 3e10c
+$ selecionar 8
+$ Change: 1e00c
+$ selecionar 8
+$ You do not have enough money
+$ adicionar Water 5 
+$ Product Water added to the machine
+$ adicionar IceTea 10 1e20c
+$ Product IceTea added to the machine
+$ listar
+$      Number          |            Name                               |       Stock          |    Price    
+$         1            |        Water                                  |        9             |        50c  
+$         2            |        Soda                                   |        1             |        1e   
+$         3            |        Snack                                  |        1             |        1e20c
+$         4            |        Chocolate Bar                          |        3             |        80c  
+$         5            |        Coffee                                 |        4             |        55c  
+$         6            |        Tea                                    |        2             |        1e20c
+$         7            |        Juice                                  |        0             |        1e20c
+$         8            |        Sandwich                               |        4             |        2e10c
+$         9            |        Chips                                  |        3             |        1e20c
+$         10           |        Candy                                  |        5             |        70c  
+$         11           |        IceTea                                 |        10            |        1e20c
+$ sair
+$ Change: 1e00c
+$ 1e
 ```
 
 
