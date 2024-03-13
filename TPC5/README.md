@@ -16,7 +16,7 @@ Tal como foi referido anteriormente, o programa foi desenvolvido em Python, apro
 
 ### Análise Léxica com PLY
 
-- **Tokens:** Definimos os tokens que representam os diferentes tipos de entrada que o programa pode receber, como `LISTAR`, `MOEDA`, `SELECIONAR` e `SAIR`.
+- **Tokens:** Definimos os tokens que representam os diferentes tipos de entrada que o programa pode receber, como `LISTAR`, `MOEDA`, `SELECIONAR`, `ADICIONAR` e `SAIR`.
 - **Expressões Regulares:** Utilizamos expressões regulares para definir padrões de correspondência para cada tipo de token, permitindo identificar e classificar corretamente as entradas do utilizador.
 - **Funções de Tokenização:** Implementamos funções de tokenização que definem como cada tipo de entrada deve ser processado e convertido em tokens reconhecidos pelo programa.
 
